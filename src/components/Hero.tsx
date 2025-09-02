@@ -27,23 +27,23 @@ export const Hero = ({ onFileAnalyzed }: HeroProps) => {
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-            Get instant feedback on your resume with our AI-powered analysis. 
-            Improve ATS compatibility, optimize keywords, and land your dream job.
+            Get instant feedback with AI-powered analysis including grammar checks, 
+            skill suggestions, ATS optimization, and formatting improvements.
           </p>
 
           {/* Trust Indicators */}
           <div className="flex items-center justify-center gap-8 mb-12 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-success" />
-              <span>ATS Compatible</span>
+              <span>Grammar Check</span>
             </div>
             <div className="flex items-center gap-2">
               <TrendingUp className="h-4 w-4 text-success" />
-              <span>99% Accuracy</span>
+              <span>Skills Analysis</span>
             </div>
             <div className="flex items-center gap-2">
               <Upload className="h-4 w-4 text-success" />
-              <span>Instant Analysis</span>
+              <span>Instant Feedback</span>
             </div>
           </div>
         </div>
@@ -72,9 +72,9 @@ export const Hero = ({ onFileAnalyzed }: HeroProps) => {
               <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <TrendingUp className="h-6 w-6 text-accent" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Smart Scoring</h3>
+              <h3 className="text-lg font-semibold mb-2">Grammar & Skills</h3>
               <p className="text-muted-foreground text-sm">
-                Get detailed scores across multiple dimensions including formatting, content, and keywords.
+                Advanced grammar checking and intelligent skill suggestions based on industry trends and job requirements.
               </p>
             </div>
           </Card>

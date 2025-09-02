@@ -3,6 +3,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ScoreCard } from "./ScoreCard";
+import { GrammarCheck } from "./GrammarCheck";
+import { SkillsSuggestion } from "./SkillsSuggestion";
+import { FormatCheck } from "./FormatCheck";
 import { 
   FileText, 
   CheckCircle, 
@@ -26,6 +29,35 @@ interface AnalysisResults {
   recommendations: string[];
   strengths: string[];
   improvements: string[];
+  grammarIssues: Array<{
+    type: "grammar" | "spelling" | "style";
+    text: string;
+    suggestion: string;
+    context: string;
+    severity: "high" | "medium" | "low";
+  }>;
+  skillsData: {
+    currentSkills: string[];
+    suggestedSkills: Array<{
+      name: string;
+      category: "technical" | "soft" | "industry";
+      demand: "high" | "medium" | "rising";
+      relevance: number;
+    }>;
+    missingCritical: Array<{
+      name: string;
+      category: "technical" | "soft" | "industry";
+      demand: "high" | "medium" | "rising";
+      relevance: number;
+    }>;
+  };
+  formatIssues: Array<{
+    category: "structure" | "formatting" | "content" | "ats";
+    issue: string;
+    impact: "high" | "medium" | "low";
+    recommendation: string;
+    fixed: boolean;
+  }>;
 }
 
 interface AnalysisDashboardProps {
@@ -131,6 +163,25 @@ export const AnalysisDashboard = ({ results, onNewAnalysis }: AnalysisDashboardP
             score={results.keywordMatch}
             icon={Target}
             description="Industry-relevant keywords and phrases"
+          />
+        </div>
+
+        {/* Enhanced Analysis Sections */}
+        <div className="space-y-8 mb-12">
+          {/* Grammar & Spelling Check */}
+          <GrammarCheck issues={results.grammarIssues} />
+          
+          {/* Skills Suggestions */}
+          <SkillsSuggestion 
+            currentSkills={results.skillsData.currentSkills}
+            suggestedSkills={results.skillsData.suggestedSkills}
+            missingCritical={results.skillsData.missingCritical}
+          />
+          
+          {/* Format & Structure Check */}
+          <FormatCheck 
+            issues={results.formatIssues}
+            overallScore={results.formattingScore}
           />
         </div>
 

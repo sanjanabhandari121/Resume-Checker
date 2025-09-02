@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Upload, File, X, CheckCircle2, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { InstantFeedback } from "./InstantFeedback";
 
 interface FileUploadProps {
   onFileAnalyzed?: (results: any) => void;
@@ -99,6 +100,63 @@ export const FileUpload = ({ onFileAnalyzed }: FileUploadProps) => {
           "Missing contact information",
           "Inconsistent date formatting",
           "Could use more technical skills"
+        ],
+        grammarIssues: [
+          {
+            type: "spelling" as const,
+            text: "experiance",
+            suggestion: "experience",
+            context: "Over 5 years of experiance in software development",
+            severity: "high" as const
+          },
+          {
+            type: "grammar" as const,
+            text: "I have worked",
+            suggestion: "Worked",
+            context: "I have worked on multiple projects",
+            severity: "medium" as const
+          }
+        ],
+        skillsData: {
+          currentSkills: ["JavaScript", "React", "Node.js", "Python"],
+          suggestedSkills: [
+            {
+              name: "TypeScript",
+              category: "technical" as const,
+              demand: "high" as const,
+              relevance: 92
+            },
+            {
+              name: "AWS",
+              category: "technical" as const,
+              demand: "rising" as const,
+              relevance: 88
+            }
+          ],
+          missingCritical: [
+            {
+              name: "Machine Learning",
+              category: "technical" as const,
+              demand: "high" as const,
+              relevance: 95
+            }
+          ]
+        },
+        formatIssues: [
+          {
+            category: "structure" as const,
+            issue: "Missing professional summary section",
+            impact: "high" as const,
+            recommendation: "Add a 2-3 line professional summary at the top",
+            fixed: false
+          },
+          {
+            category: "formatting" as const,
+            issue: "Inconsistent bullet point style",
+            impact: "medium" as const,
+            recommendation: "Use consistent bullet points throughout",
+            fixed: true
+          }
         ]
       };
       
@@ -119,6 +177,8 @@ export const FileUpload = ({ onFileAnalyzed }: FileUploadProps) => {
 
   return (
     <div className="space-y-6">
+      <InstantFeedback isAnalyzing={isAnalyzing} />
+      
       <Card className={cn(
         "border-2 border-dashed border-border bg-gradient-card p-8 text-center transition-all duration-300",
         isDragOver && "border-primary bg-primary/5 shadow-glow",
